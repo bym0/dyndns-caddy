@@ -14,7 +14,7 @@ def resolve_dyndns():
         resolved_ip = socket.gethostbyname(dyndns_domain)
         with open('/app/dyndns.conf', 'w') as f:
             f.write(f"@allowed_ip {resolved_ip}\n")
-            f.write("allow @allowed_ip\n")
+            f.write("abort not @allowed_ip\n")
         print(f"Resolved {dyndns_domain} to {resolved_ip} and updated configuration. Will retry in 5 minutes.")
     except socket.gaierror as e:
         print(f"Error resolving {dyndns_domain}: {e}")
