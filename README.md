@@ -59,7 +59,7 @@ aaaand then you should be able to
 ```
 
 uptime-kuma.example.com {
-  import /etc/caddy/dyndns_ips.conf
+  import /etc/caddy/dyndns.conf
   reverse_proxy / http://127.0.0.1:3000
 }
 
