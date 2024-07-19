@@ -7,6 +7,9 @@ on:
     paths-ignore:
       - '**.md'
 
+env:
+  image_name: "ghcr.io/bym0/dyndns-caddy:latest"
+
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -21,10 +24,9 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_TOKEN }}
-      - name: Build and push Python
+      - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: "{{defaultContext}}:python"
           push: true
-          tags: ghcr.io/bym0/dyndns-caddy:latest
+          tags: ${{ env.image_name }}
           platforms: linux/amd64,linux/arm64
